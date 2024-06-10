@@ -1,5 +1,39 @@
 # Routing
 
+- Basic: Thư mục có file: `page.tsx` -> sign-in: `page.tsx` sẽ tạo ra đường dẫn là /sign-in. Lưu ý, trong thư mục phải có file `page.tsx`
+- Dynamic: tạo folder có dấu []
+- Group:nó sẽ không tạo ra routing, ví dụ như `(dashboard)` sẽ không tạo ra /dashboard. Nếu truy cập thì sẽ hiển thị not found, mục đíhc sử dụng để gom các routing chó chung layout vào chung
+
+```js
+dashboard;
+```
+
+- Nested: routing lồng nhau, các thư mục lồng nhau (vì mỗi thư mục là 1 page)
+
+```js
+/hello/haha/page.tsx;
+hello là segmet 1
+haha là segmet 2
+```
+
+- Segment: [name] -> [course] về cơ cái này là dynamic segment (linh động), mục đích để lấy các params ra để xử lý 1 cong việc gì đó. Ví dụ lấy bài học từ khóa thì mình sẽ có cấu trúc: [course]/lesson/page.tsx
+
+```js
+[course]/lesson.p
+ex: http://localhost:3000/hi/lesson?%C3%A1dasdsad=
+
+```
+
+- Catch-all Segment: sign-in/[...sign-in]
+- Optional Catch-all Segment: sign-in/[[...sign-in]]
+- Parallel Routes
+- Intercepting Routes
+
+# Params
+
+- Params
+- Search Params
+
 ## Next/Link
 
 - Link: dùng Link của next-link để có thể chuyển qua lại giữa các page 1 cách mượt mà và không bị reload lại trang
