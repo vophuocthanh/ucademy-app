@@ -1,3 +1,3 @@
 export default function page() {
-  return <div>Home page</div>;
+  return <div>Comment page</div>;
 }
