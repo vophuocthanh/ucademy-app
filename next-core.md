@@ -16,6 +16,8 @@ hello là segmet 1
 haha là segmet 2
 ```
 
+[] cos nghiax laf dynacmic routing => nó là params
+
 - Segment: [name] -> [course] về cơ cái này là dynamic segment (linh động), mục đích để lấy các params ra để xử lý 1 cong việc gì đó. Ví dụ lấy bài học từ khóa thì mình sẽ có cấu trúc: [course]/lesson/page.tsx
 
 ```js
@@ -31,8 +33,15 @@ ex: http://localhost:3000/hi/lesson?%C3%A1dasdsad=
 
 # Params
 
-- Params
-- Search Params
+- Params: param chỉ có ở dynamic routing
+  vd: http://localhost:3000/html-css/lesson?slug=tong-quan
+  ![alt text](image.png)
+- Lưu: khi để 2 ngoặc vuông cùng cấp thì không được (báo lỗi). Vì khi đấy thì nó cx sẽ hiểu thằng [] thứu nhất, và nó cx hiểu là [] thứ 2
+- Search Params: Thường là những query ở trên url như: lesong?slug=html-css thì _slug_ chính là searchParams
+  vd2: http://localhost:3000/khoa-hoc/nextjs/vophuocthanh/account?slug=admin
+  ![alt text](image-1.png)
+  vd3: http://localhost:3000/khoa-hoc/nextjs/vophuocthanh/account?name=admin
+  ![alt text](image-2.png)
 
 ## Next/Link
 
