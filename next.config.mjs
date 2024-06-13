@@ -4,10 +4,22 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'images.unsplash.com',
+        hostname: 'mobisoftinfotech.com',
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.ctfassets.net',
+        port: '',
+        pathname: '/**',
+      },
+      // {
+      //   protocol: 'http',
+      //   hostname: 'images.unsplash.com',
+      //   port: '',
+      //   pathname: '/**',
+      // },
     ],
   },
 };
