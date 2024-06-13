@@ -59,3 +59,7 @@ ex: http://localhost:3000/hi/lesson?%C3%A1dasdsad=
 ## Hook
 
 - hook `usePathname()`: sử dụng để nhận đường dẫn hiện tại, sử dụng cho việc active link hiện tại
+
+## Next/Image
+
+- Image sẽ có 2 thuộc tính bắt buộc là `src` và `alt`, nếu k set `width` và `height` của nó thì nó sẽ bị lỗi, cách fix là dùng `fill`, nhưng khi dùng fill thì ảnh sẽ bị absolute, nếu muốn nó k bị tràn thì cho thằng cha bao nó là relative. Nếu dùng `fill` thì k cần `width` và `height`
