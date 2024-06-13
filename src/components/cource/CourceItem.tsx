@@ -1,7 +1,11 @@
 import { IconClock, IconEye, IconStar } from '@/components/icons';
 import Image from 'next/image';
 import Link from 'next/link';
-const CourseItem = () => {
+
+interface TMenuItem {
+  image?: string;
+}
+const CourseItem = ({ image }: TMenuItem) => {
   const courseInfo = [
     {
       title: '3000',
@@ -22,7 +26,7 @@ const CourseItem = () => {
     <div className='bg-white border border-gray-200 p-4 rounded-2xl'>
       <Link href='#' className='block h-[180px] relative'>
         <Image
-          src='https://mobisoftinfotech.com/resources/wp-content/uploads/2022/04/next-JS-framework.png'
+          src={image ? image : ''}
           alt=''
           width={300}
           height={200}

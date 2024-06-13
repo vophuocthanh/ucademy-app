@@ -14,12 +14,18 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
-      // {
-      //   protocol: 'http',
-      //   hostname: 'images.unsplash.com',
-      //   port: '',
-      //   pathname: '/**',
-      // },
+      {
+        protocol: 'https',
+        hostname: 'www.felixvemmer.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'static.bit.dev',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };
