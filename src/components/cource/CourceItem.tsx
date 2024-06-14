@@ -26,7 +26,11 @@ const CourseItem = ({ image }: TMenuItem) => {
     <div className='bg-white border border-gray-200 p-4 rounded-2xl'>
       <Link href='#' className='block h-[180px] relative'>
         <Image
-          src={image ? image : ''}
+          src={
+            image
+              ? image
+              : 'https://imagekit.io/blog/content/images/2024/03/Nextjs-Video-Player.png'
+          }
           alt=''
           width={300}
           height={200}

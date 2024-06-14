@@ -63,3 +63,12 @@ ex: http://localhost:3000/hi/lesson?%C3%A1dasdsad=
 ## Next/Image
 
 - Image sẽ có 2 thuộc tính bắt buộc là `src` và `alt`, nếu k set `width` và `height` của nó thì nó sẽ bị lỗi, cách fix là dùng `fill`, nhưng khi dùng fill thì ảnh sẽ bị absolute, nếu muốn nó k bị tràn thì cho thằng cha bao nó là relative. Nếu dùng `fill` thì k cần `width` và `height`
+
+## Page and Layout
+
+- page.tsx và layout.tsx thì có thể dùng dược ở server side,
+  ![alt text](image-3.png)
+
+## CLerk Auth
+
+- auth() sẽ dùng ở server, còn useAuth() sẽ dùng ở client chứ k dùng đc ở phía server
