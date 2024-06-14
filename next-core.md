@@ -72,3 +72,11 @@ ex: http://localhost:3000/hi/lesson?%C3%A1dasdsad=
 ## CLerk Auth
 
 - auth() sẽ dùng ở server, còn useAuth() sẽ dùng ở client chứ k dùng đc ở phía server
+
+## 1 số trick về typeScript
+
+- Trong file index.d.ts (nói chung file có .d.ts) là không chứa đc enum, không cho phép dùng enum trong .d.ts
+
+## Kiến thức về Mongose
+
+- Schema trong Mongoose là một đối tượng xác định cấu trúc của tài liệu (document) trong một collection của MongoDB. Nó cho phép định nghĩa các trường (fields), kiểu dữ liệu (data types) và các ràng buộc (constraints) cho dữ liệu.
