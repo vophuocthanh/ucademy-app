@@ -1,14 +1,8 @@
 import { CourceGrid } from '@/components/common';
 import CourseItem from '@/components/cource/CourceItem';
 import Heading from '@/components/typography/Heading';
-import createUser from '@/lib/actions/user.actions';
 
 const page = async () => {
-  const user = await createUser({
-    clerkId: 'clerk_123',
-    email: 'phuocthanh2k03@gmail.com',
-    username: 'bin2003',
-  });
   return (
     <div>
       <Heading>Khám phá</Heading>
