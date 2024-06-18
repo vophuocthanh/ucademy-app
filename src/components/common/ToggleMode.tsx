@@ -1,39 +1,65 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
 import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
+import { LaptopMinimal } from 'lucide-react';
 import { useTheme } from 'next-themes';
 
-import { Button } from '@/components/ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-
 export function ModeToggle() {
-  const { setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant='outline' size='icon'>
-          <SunIcon className='h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0' />
-          <MoonIcon className='absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100' />
-          <span className='sr-only'>Toggle theme</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align='end'>
-        <DropdownMenuItem onClick={() => setTheme('light')}>
-          Light
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('dark')}>
-          Dark
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('system')}>
-          System
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <div className='flex dark:border border dark:border-opacity-10 dark:border-blue-400 rounded-full space-x-2'>
+      <Button
+        variant='outline'
+        size='icon'
+        onClick={() => setTheme('light')}
+        aria-pressed={theme === 'light'}
+        className={`rounded-full w-8 h-8 ${
+          theme === 'light' ? '' : 'border-none !bg-transparent'
+        }`}
+      >
+        <SunIcon
+          className={`h-[1rem] w-[1rem] transition-all ${
+            theme === 'light' ? 'text-yellow-500' : 'text-gray-500'
+          }`}
+        />
+        <span className='sr-only'>Light mode</span>
+      </Button>
+      <Button
+        variant='outline'
+        size='icon'
+        onClick={() => setTheme('dark')}
+        aria-pressed={theme === 'dark'}
+        className={`rounded-full w-8 h-8 ${
+          theme === 'dark' ? '' : 'border-none !bg-transparent'
+        }`}
+      >
+        <MoonIcon
+          className={`h-[1rem] w-[1rem] transition-all ${
+            theme === 'dark' ? 'text-blue-500' : 'text-gray-500'
+          }`}
+        />
+        <span className='sr-only'>Dark mode</span>
+      </Button>
+      <Button
+        variant='outline'
+        size='icon'
+        onClick={() => setTheme('system')}
+        aria-pressed={theme === 'system'}
+        className={`rounded-full w-8 h-8 ${
+          theme === 'system' ? '' : 'border-none !bg-transparent'
+        }`}
+      >
+        <div className='flex items-center justify-center h-[1rem] w-[1rem]'>
+          <LaptopMinimal
+            className={`h-[1rem] w-[1rem] transition-all text-gray-500 ${
+              theme === 'system' ? 'text-primary' : 'dark:text-white'
+            }`}
+          />
+        </div>
+        <span className='sr-only'>System mode</span>
+      </Button>
+    </div>
   );
 }
