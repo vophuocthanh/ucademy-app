@@ -80,3 +80,7 @@ ex: http://localhost:3000/hi/lesson?%C3%A1dasdsad=
 ## Kiến thức về Mongose
 
 - Schema trong Mongoose là một đối tượng xác định cấu trúc của tài liệu (document) trong một collection của MongoDB. Nó cho phép định nghĩa các trường (fields), kiểu dữ liệu (data types) và các ràng buộc (constraints) cho dữ liệu.
+
+## Tech
+
+- slugify: biến title thành đường dẫn. VD: khóa học typescript => khoa-hoc-typescript
