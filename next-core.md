@@ -84,3 +84,5 @@ ex: http://localhost:3000/hi/lesson?%C3%A1dasdsad=
 ## Tech
 
 - slugify: biến title thành đường dẫn. VD: khóa học typescript => khoa-hoc-typescript
+- Partial<ICourse>: Bien tat ca nhung kieu trong ICourse thanh khong bat buoc (o trong typecript)
+- revalidatePath: khi ma cap nhat xong thi no se tu dong refecth lai data, giong nhu refecth o trong react query
