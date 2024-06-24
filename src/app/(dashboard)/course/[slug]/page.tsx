@@ -14,37 +14,87 @@ const page = async ({
     slug: params.slug,
   });
   if (!data) return null;
+  const videoId = data.intro_url?.split('v=')[1];
   return (
     <div className='grid lg:grid-cols-[2fr,1fr] gap-10 min-h-screen'>
       <div>
         <div className='relative aspect-video mb-5'>
-          <Image
-            src='https://www.syncfusion.com/blogs/wp-content/uploads/2022/09/Optimize-NextJS-App-bundle-performance.png'
-            alt=''
-            fill
-            className='w-full h-full object-cover rounded-lg'
-          />
+          {data.intro_url ? (
+            <>
+              <iframe
+                width='853'
+                height='480'
+                src={`https://www.youtube.com/embed/${videoId}`}
+                title='BLACK MYTH WUKONG New Insane Combat Preview and Gameplay Demo | EXCLUSIVE PS5 and PC Launch'
+                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+                className='w-full h-full object-fill'
+              ></iframe>
+            </>
+          ) : (
+            <Image
+              src='https://www.syncfusion.com/blogs/wp-content/uploads/2022/09/Optimize-NextJS-App-bundle-performance.png'
+              alt=''
+              fill
+              className='w-full h-full object-cover rounded-lg'
+            />
+          )}
         </div>
         <h1 className='font-bold text-3xl mb-5'>{data?.title}</h1>
         <BoxSection title='Mô tả'>
           <div className='leading-normal'>{data.desc}</div>
         </BoxSection>
         <BoxSection title='Thông tin'>
-          <div className='grid grid-cols-4 dark:text-white gap-5 mb-10'>
+          <div className='grid grid-cols-4 gap-5 mb-10'>
             <BoxInfo title='Bài học'>100</BoxInfo>
-            <BoxInfo title='Lượt xem'>100</BoxInfo>
+            <BoxInfo title='Lượt xem'>{data.views}</BoxInfo>
             <BoxInfo title='Trình độ'>100</BoxInfo>
             <BoxInfo title='Thời lượng'>100</BoxInfo>
           </div>
         </BoxSection>
         <BoxSection title='Yêu cầu'>
           {data.info.requirements.map((r, index) => (
-            <div key={index}>{r}</div>
+            <div key={index} className='mb-3 flex items-center gap-2'>
+              <span className='flex-shrink-0 size-5 bg-primary text-white p-1 rounded flex items-center justify-center'>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='none'
+                  viewBox='0 0 24 24'
+                  strokeWidth={1.5}
+                  stroke='currentColor'
+                  className='w-6 h-6'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    d='M4.5 12.75l6 6 9-13.5'
+                  />
+                </svg>
+              </span>
+              <span>{r}</span>
+            </div>
           ))}
         </BoxSection>
         <BoxSection title='Lợi ích'>
-          {data.info.requirements.map((r, index) => (
-            <div key={index}>{r}</div>
+          {data.info.benefits.map((r, index) => (
+            <div key={index} className='mb-3 flex items-center gap-2'>
+              <span className='flex-shrink-0 size-5 bg-primary text-white p-1 rounded flex items-center justify-center'>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='none'
+                  viewBox='0 0 24 24'
+                  strokeWidth={1.5}
+                  stroke='currentColor'
+                  className='w-6 h-6'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    d='M4.5 12.75l6 6 9-13.5'
+                  />
+                </svg>
+              </span>
+              <span>{r}</span>
+            </div>
           ))}
         </BoxSection>
         <BoxSection title='Q.A'>
@@ -105,7 +155,7 @@ function BoxInfo({
   children: React.ReactNode;
 }) {
   return (
-    <div className='bg-white rounded-lg p-5 dark:bg-grayDarker'>
+    <div className='bg-white rounded-lg dark:bg-grayDarker p-5'>
       <h4 className='text-sm text-slate-400 font-normal'>{title}</h4>
       <h3 className='font-bold'>{children}</h3>
     </div>
