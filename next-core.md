@@ -31,6 +31,9 @@ ex: http://localhost:3000/hi/lesson?%C3%A1dasdsad=
 - Parallel Routes
 - Intercepting Routes
 
+useRouter() => Client Component
+redirect() => Server Component
+
 # Params
 
 - Params: param chỉ có ở dynamic routing

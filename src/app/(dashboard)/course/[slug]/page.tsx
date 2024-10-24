@@ -1,6 +1,9 @@
+import PageNotFound from '@/app/not-found';
 import { IconPlay, IconStudy, IconUsers } from '@/components/icons';
 import { Button } from '@/components/ui/button';
+import { courseLevelTitle } from '@/constants';
 import { getCourseBySlug } from '@/lib/actions/cource.actions';
+import { ECourseStatus } from '@/types/enums';
 import Image from 'next/image';
 
 const page = async ({
@@ -13,7 +16,9 @@ const page = async ({
   const data = await getCourseBySlug({
     slug: params.slug,
   });
+  
   if (!data) return null;
+  if (data.status !== ECourseStatus.APPROVED) return <PageNotFound />;
   const videoId = data.intro_url?.split('v=')[1];
   return (
     <div className='grid lg:grid-cols-[2fr,1fr] gap-10 min-h-screen'>
@@ -32,7 +37,7 @@ const page = async ({
             </>
           ) : (
             <Image
-              src='https://www.syncfusion.com/blogs/wp-content/uploads/2022/09/Optimize-NextJS-App-bundle-performance.png'
+              src={data.image}
               alt=''
               fill
               className='w-full h-full object-cover rounded-lg'
@@ -47,7 +52,7 @@ const page = async ({
           <div className='grid grid-cols-4 gap-5 mb-10'>
             <BoxInfo title='Bài học'>100</BoxInfo>
             <BoxInfo title='Lượt xem'>{data.views}</BoxInfo>
-            <BoxInfo title='Trình độ'>100</BoxInfo>
+            <BoxInfo title='Trình độ'>{courseLevelTitle[data.level]}</BoxInfo>
             <BoxInfo title='Thời lượng'>100</BoxInfo>
           </div>
         </BoxSection>
