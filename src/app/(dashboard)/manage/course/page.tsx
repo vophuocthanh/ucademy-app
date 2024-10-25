@@ -1,3 +1,9 @@
+import CourseManage from '@/components/cource/CourceManager';
+
 export default function page() {
-  return <div>Manager course</div>;
+  return (
+    <>
+      <CourseManage></CourseManage>
+    </>
+  );
 }
