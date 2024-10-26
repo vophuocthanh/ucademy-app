@@ -55,7 +55,7 @@ export async function updateCourse(params: TUpdateCourseParams) {
     await Course.findOneAndUpdate({ slug: params.slug }, params.updateData, {
       new: true,
     });
-    revalidatePath('/'); // khi ma cap nhat xong thi no se tu dong refecth lai data, giong nhu refecth o trong react query
+    revalidatePath(params.path || '/'); // khi ma cap nhat xong thi no se tu dong refecth lai data, giong nhu refecth o trong react query
     return {
       success: true,
       message: 'Cập nhật khóa học thành công!',

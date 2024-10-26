@@ -1,9 +1,13 @@
 import CourseManage from '@/components/cource/CourceManager';
+import { getAllCourses } from '@/lib/actions/cource.actions';
 
-export default function page() {
+const page = async () => {
+  const courses = await getAllCourses();
   return (
-    <>
-      <CourseManage></CourseManage>
-    </>
+    <CourseManage
+      courses={courses ? JSON.parse(JSON.stringify(courses)) : []}
+    ></CourseManage>
   );
-}
+};
+
+export default page;
