@@ -41,7 +41,6 @@ export const menuItems: TMenuItem[] = [
     icon: <IconComment className='size-5' />,
   },
 ];
-
 export const courseStatus: {
   title: string;
   value: ECourseStatus;
@@ -63,7 +62,6 @@ export const courseStatus: {
     className: 'text-red-500 bg-red-500',
   },
 ];
-
 export const courseLevel: {
   title: string;
   value: ECourseLevel;
@@ -86,7 +84,6 @@ export const courseLevelTitle: Record<ECourseLevel, string> = {
   [ECourseLevel.INTERMEDIATE]: 'Trung bình',
   [ECourseLevel.ADVANCED]: 'Khó',
 };
-
 export const commonClassNames = {
   status:
     'bg-opacity-10 border border-current rounded-md font-medium px-3 py-1 text-xs whitespace-nowrap',

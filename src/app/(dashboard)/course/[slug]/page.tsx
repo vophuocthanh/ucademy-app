@@ -8,6 +8,7 @@ import {
 } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { courseLevelTitle } from '@/constants';
+import { ILecture } from '@/database/lecture.model';
 import { getCourseBySlug } from '@/lib/actions/cource.actions';
 import { ECourseStatus } from '@/types/enums';
 import Image from 'next/image';
@@ -22,10 +23,10 @@ const page = async ({
   const data = await getCourseBySlug({
     slug: params.slug,
   });
-
   if (!data) return null;
   if (data.status !== ECourseStatus.APPROVED) return <PageNotFound />;
   const videoId = data.intro_url?.split('v=')[1];
+  const lectures = data.lectures || [];
   return (
     <div className='grid lg:grid-cols-[2fr,1fr] gap-10 min-h-screen'>
       <div>
@@ -60,6 +61,27 @@ const page = async ({
             <BoxInfo title='Lượt xem'>{data.views.toLocaleString()}</BoxInfo>
             <BoxInfo title='Trình độ'>{courseLevelTitle[data.level]}</BoxInfo>
             <BoxInfo title='Thời lượng'>100</BoxInfo>
+          </div>
+        </BoxSection>
+        <BoxSection title='Nội dung khóa học'>
+          <div className='flex flex-col gap-5'>
+            {lectures.map((lecture: ILecture) => (
+              <Accordion
+                type='single'
+                collapsible
+                className='w-full'
+                key={lecture._id}
+              >
+                <AccordionItem value={lecture._id}>
+                  <AccordionTrigger>
+                    <div className='flex items-center gap-3 justify-between w-full pr-5'>
+                      <div>{lecture.title}</div>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent></AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            ))}
           </div>
         </BoxSection>
         <BoxSection title='Yêu cầu'>
@@ -120,7 +142,7 @@ const page = async ({
         </BoxSection>
       </div>
       <div>
-        <div className='bg-white dark:bg-grayDarker rounded-lg p-5'>
+        <div className='bg-white rounded-lg p-5'>
           <div className='flex items-center gap-2 mb-3'>
             <strong className='text-primary text-xl font-bold'>
               {data.price}
@@ -168,7 +190,7 @@ function BoxInfo({
   children: React.ReactNode;
 }) {
   return (
-    <div className='bg-white rounded-lg dark:bg-grayDarker p-5'>
+    <div className='bg-white rounded-lg p-5'>
       <h4 className='text-sm text-slate-400 font-normal'>{title}</h4>
       <h3 className='font-bold'>{children}</h3>
     </div>
