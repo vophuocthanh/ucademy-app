@@ -1,5 +1,11 @@
 import PageNotFound from '@/app/not-found';
 import { IconPlay, IconStudy, IconUsers } from '@/components/icons';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { courseLevelTitle } from '@/constants';
 import { getCourseBySlug } from '@/lib/actions/cource.actions';
@@ -16,7 +22,7 @@ const page = async ({
   const data = await getCourseBySlug({
     slug: params.slug,
   });
-  
+
   if (!data) return null;
   if (data.status !== ECourseStatus.APPROVED) return <PageNotFound />;
   const videoId = data.intro_url?.split('v=')[1];
@@ -51,7 +57,7 @@ const page = async ({
         <BoxSection title='Thông tin'>
           <div className='grid grid-cols-4 gap-5 mb-10'>
             <BoxInfo title='Bài học'>100</BoxInfo>
-            <BoxInfo title='Lượt xem'>{data.views}</BoxInfo>
+            <BoxInfo title='Lượt xem'>{data.views.toLocaleString()}</BoxInfo>
             <BoxInfo title='Trình độ'>{courseLevelTitle[data.level]}</BoxInfo>
             <BoxInfo title='Thời lượng'>100</BoxInfo>
           </div>
@@ -104,10 +110,12 @@ const page = async ({
         </BoxSection>
         <BoxSection title='Q.A'>
           {data.info.qa.map((qa, index) => (
-            <div key={index}>
-              <div>{qa.question}</div>
-              <div>{qa.answer}</div>
-            </div>
+            <Accordion type='single' collapsible key={index}>
+              <AccordionItem value={qa.question}>
+                <AccordionTrigger>{qa.question}</AccordionTrigger>
+                <AccordionContent>{qa.answer}</AccordionContent>
+              </AccordionItem>
+            </Accordion>
           ))}
         </BoxSection>
       </div>

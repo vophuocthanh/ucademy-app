@@ -1,6 +1,6 @@
 import { CourceGrid } from '@/components/common';
+import Heading from '@/components/common/Heading';
 import CourseItem from '@/components/cource/CourceItem';
-import Heading from '@/components/typography/Heading';
 import { getAllCourses } from '@/lib/actions/cource.actions';
 
 const page = async () => {

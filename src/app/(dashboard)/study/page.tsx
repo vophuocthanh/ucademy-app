@@ -1,4 +1,4 @@
-import Heading from '@/components/typography/Heading';
+import Heading from '@/components/common/Heading';
 
 export default function page() {
   return (

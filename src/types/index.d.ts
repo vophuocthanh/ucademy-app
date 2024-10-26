@@ -6,6 +6,7 @@ export type TMenuItem = {
   url: string;
   title: string;
   icon: React.ReactNode;
+  onlyIcon?: boolean;
 };
 // User
 export type TCreateUserParams = {
@@ -26,4 +27,21 @@ export type TUpdateCourseParams = {
   slug: string;
   updateData: Partial<ICourse>;
   path?: string;
+};
+
+// Lecture
+export type TCreateLectureParams = {
+  course: string;
+  title?: string;
+  order?: number;
+  path?: string;
+};
+export type TUpdateLectureParams = {
+  lectureId: string;
+  updateData: {
+    title?: string;
+    order?: number;
+    _destroy?: boolean;
+    path?: string;
+  };
 };
