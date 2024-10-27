@@ -8,8 +8,8 @@ import {
 } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { courseLevelTitle } from '@/constants';
-import { ILecture } from '@/database/lecture.model';
 import { getCourseBySlug } from '@/lib/actions/cource.actions';
+import { TUpdateCourseLecture } from '@/types';
 import { ECourseStatus } from '@/types/enums';
 import Image from 'next/image';
 
@@ -43,12 +43,7 @@ const page = async ({
               ></iframe>
             </>
           ) : (
-            <Image
-              src={data.image}
-              alt=''
-              fill
-              className='w-full h-full object-cover rounded-lg'
-            />
+            <Image src={data.image} alt='' fill className='w-full h-full object-cover rounded-lg' />
           )}
         </div>
         <h1 className='font-bold text-3xl mb-5'>{data?.title}</h1>
@@ -65,13 +60,8 @@ const page = async ({
         </BoxSection>
         <BoxSection title='Nội dung khóa học'>
           <div className='flex flex-col gap-5'>
-            {lectures.map((lecture: ILecture) => (
-              <Accordion
-                type='single'
-                collapsible
-                className='w-full'
-                key={lecture._id}
-              >
+            {lectures.map((lecture: TUpdateCourseLecture) => (
+              <Accordion type='single' collapsible className='w-full' key={lecture._id}>
                 <AccordionItem value={lecture._id}>
                   <AccordionTrigger>
                     <div className='flex items-center gap-3 justify-between w-full pr-5'>
@@ -96,11 +86,7 @@ const page = async ({
                   stroke='currentColor'
                   className='w-6 h-6'
                 >
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    d='M4.5 12.75l6 6 9-13.5'
-                  />
+                  <path strokeLinecap='round' strokeLinejoin='round' d='M4.5 12.75l6 6 9-13.5' />
                 </svg>
               </span>
               <span>{r}</span>
@@ -119,11 +105,7 @@ const page = async ({
                   stroke='currentColor'
                   className='w-6 h-6'
                 >
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    d='M4.5 12.75l6 6 9-13.5'
-                  />
+                  <path strokeLinecap='round' strokeLinejoin='round' d='M4.5 12.75l6 6 9-13.5' />
                 </svg>
               </span>
               <span>{r}</span>
@@ -144,12 +126,8 @@ const page = async ({
       <div>
         <div className='bg-white rounded-lg p-5'>
           <div className='flex items-center gap-2 mb-3'>
-            <strong className='text-primary text-xl font-bold'>
-              {data.price}
-            </strong>
-            <span className='text-slate-400 line-through text-sm'>
-              {data.sale_price}
-            </span>
+            <strong className='text-primary text-xl font-bold'>{data.price}</strong>
+            <span className='text-slate-400 line-through text-sm'>{data.sale_price}</span>
             <span className='ml-auto inline-block px-3 py-1 rounded-lg bg-primary text-primary bg-opacity-10 font-semibold text-sm'>
               {Math.floor((data.price / data.sale_price) * 100)}%
             </span>
@@ -182,13 +160,7 @@ const page = async ({
   );
 };
 
-function BoxInfo({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) {
+function BoxInfo({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className='bg-white rounded-lg p-5'>
       <h4 className='text-sm text-slate-400 font-normal'>{title}</h4>
@@ -197,13 +169,7 @@ function BoxInfo({
   );
 }
 
-function BoxSection({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) {
+function BoxSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <>
       <h2 className='font-bold text-xl mb-5'>{title}</h2>
