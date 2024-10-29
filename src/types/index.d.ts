@@ -63,3 +63,15 @@ export type TCreateLessonParams = {
   path?: string;
   slug?: string;
 };
+
+export type TUpdateLessonParams = {
+  lessonId: string;
+  updateData: {
+    title?: string;
+    slug?: string;
+    duration?: number;
+    video_url?: string;
+    content?: string;
+  };
+  path?: string;
+};
