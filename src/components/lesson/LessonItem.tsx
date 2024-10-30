@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { IconPlay } from '../icons';
 
@@ -6,15 +7,27 @@ interface ILessonType {
     title: string;
     duration: number;
   };
+  isActive?: boolean;
   url?: string;
 }
 
-const LessonItem = ({ lesson, url }: ILessonType) => {
+const LessonItem = ({ lesson, url, isActive }: ILessonType) => {
   return (
-    <div className='flex items-center gap-2 bgDarkMode border borerDarkMode rounded-lg p-4 text-base font-medium'>
-      <IconPlay className='size-5' />
-      {url ? <Link href={'/'}>{lesson.title}</Link> : <h4>{lesson.title}</h4>}
-      <span className='ml-auto text-xs font-semibold'>{lesson.duration} phút</span>
+    <div
+      className={cn(
+        'flex items-center gap-2 bgDarkMode border borderDarkMode rounded-lg p-4 font-medium text-sm',
+        isActive ? 'text-primary font-semibold pointer-events-none' : ''
+      )}
+    >
+      <IconPlay className='size-5 flex-shrink-0' />
+      {url ? (
+        <Link href={url} className='line-clamp-1'>
+          {lesson.title}
+        </Link>
+      ) : (
+        <h4 className='line-clamp-1'>{lesson.title}</h4>
+      )}
+      <span className='ml-auto text-xs font-semibold flex-shrink-0'>{lesson.duration} phút</span>
     </div>
   );
 };
