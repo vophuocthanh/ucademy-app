@@ -1,8 +1,11 @@
+import PageNotFound from '@/app/not-found';
 import Heading from '@/components/common/Heading';
 import LessonContent from '@/components/lesson/LessonContent';
 import { getCourseBySlug } from '@/lib/actions/cource.actions';
 import { getHistory } from '@/lib/actions/history.actions';
 import { findAllLessons, getLessonBySlug } from '@/lib/actions/lesson.actions';
+import { getUserInfo } from '@/lib/actions/user.actions';
+import { auth } from '@clerk/nextjs/server';
 import LessonNavigation from './LessonNavigation';
 
 const page = async ({
@@ -16,12 +19,16 @@ const page = async ({
     slug: string;
   };
 }) => {
+  const { userId } = auth();
+  if (!userId) return <PageNotFound />;
+  const findUser = await getUserInfo({ userId });
+  if (!findUser) return <PageNotFound />;
   const course = params.course;
   const slug = searchParams.slug;
-
   const findCourse = await getCourseBySlug({ slug: course });
   if (!findCourse) return null;
   const courseId = findCourse?._id.toString();
+  if (!findUser.courses.includes(courseId as any)) return <PageNotFound />;
   const lessonDetails = await getLessonBySlug({
     slug,
     course: courseId || '',
@@ -35,7 +42,6 @@ const page = async ({
   const lectures = findCourse.lectures || [];
   const histories = await getHistory({ course: courseId });
   const completePercentage = ((histories?.length || 0) / (lessonList?.length || 1)) * 100;
-
   return (
     <div className='block xl:grid xl:grid-cols-[minmax(0,2fr),minmax(0,1fr)] gap-10 min-h-screen items-start'>
       <div>
