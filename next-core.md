@@ -34,6 +34,10 @@ ex: http://localhost:3000/hi/lesson?%C3%A1dasdsad=
 useRouter() => Client Component
 redirect() => Server Component
 
+### Notes
+
+- Có thể viết component trong folder app (route).
+
 # Params
 
 - Params: param chỉ có ở dynamic routing
