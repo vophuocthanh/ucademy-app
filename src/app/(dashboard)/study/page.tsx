@@ -1,6 +1,5 @@
-import CourseGrid from '@/components/common/CourceGrid';
+import StudyCourses from '@/app/(dashboard)/study/StudyCourses';
 import Heading from '@/components/common/Heading';
-import CourseItem from '@/components/cource/CourceItem';
 import { getUserCourses } from '@/lib/actions/user.actions';
 
 const page = async () => {
@@ -8,13 +7,7 @@ const page = async () => {
   return (
     <>
       <Heading>Khu vực học tập</Heading>
-      <CourseGrid>
-        {courses &&
-          courses.length > 0 &&
-          courses?.map((item) => (
-            <CourseItem key={item.slug} data={item} cta='Tiếp tục học' url='/'></CourseItem>
-          ))}
-      </CourseGrid>
+      <StudyCourses courses={courses ? JSON.parse(JSON.stringify(courses)) : []}></StudyCourses>
     </>
   );
 };

@@ -44,25 +44,15 @@ const formSchema = z.object({
   image: z.string().optional(),
   views: z.number().int().optional(),
   status: z
-    .enum([
-      ECourseStatus.APPROVED,
-      ECourseStatus.PENDING,
-      ECourseStatus.REJECTED,
-    ])
+    .enum([ECourseStatus.APPROVED, ECourseStatus.PENDING, ECourseStatus.REJECTED])
     .optional(),
   level: z
-    .enum([
-      ECourseLevel.BEGINNER,
-      ECourseLevel.INTERMEDIATE,
-      ECourseLevel.ADVANCED,
-    ])
+    .enum([ECourseLevel.BEGINNER, ECourseLevel.INTERMEDIATE, ECourseLevel.ADVANCED])
     .optional(),
   info: z.object({
     requirements: z.array(z.string()).optional(),
     benefits: z.array(z.string()).optional(),
-    qa: z
-      .array(z.object({ question: z.string(), answer: z.string() }))
-      .optional(),
+    qa: z.array(z.object({ question: z.string(), answer: z.string() })).optional(),
   }),
 });
 const CourseUpdate = ({ data }: { data: ICourse }) => {
@@ -204,11 +194,7 @@ const CourseUpdate = ({ data }: { data: ICourse }) => {
               <FormItem>
                 <FormLabel>Mô tả khóa học</FormLabel>
                 <FormControl>
-                  <Textarea
-                    placeholder='Nhập mô tả...'
-                    {...field}
-                    className='h-[200px]'
-                  />
+                  <Textarea placeholder='Nhập mô tả...' {...field} className='h-[250px]' />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -222,7 +208,7 @@ const CourseUpdate = ({ data }: { data: ICourse }) => {
                 <FormLabel>Ảnh đại diện</FormLabel>
                 <FormControl>
                   <>
-                    <div className='h-[200px] bg-white rounded-md border border-gray-200 flex items-center justify-center relative'>
+                    <div className='h-[250px] bg-white rounded-md border border-gray-200 flex items-center justify-center relative'>
                       {!imageWatch ? (
                         <UploadButton
                           endpoint='imageUploader'
@@ -238,7 +224,7 @@ const CourseUpdate = ({ data }: { data: ICourse }) => {
                           alt=''
                           src={imageWatch}
                           fill
-                          className='w-full h-full object-cover'
+                          className='w-full h-full object-cover rounded-md'
                         />
                       )}
                     </div>
@@ -286,10 +272,7 @@ const CourseUpdate = ({ data }: { data: ICourse }) => {
               <FormItem>
                 <FormLabel>Trạng thái</FormLabel>
                 <FormControl>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <SelectTrigger className='w-full'>
                       <SelectValue placeholder='Trạng thái' />
                     </SelectTrigger>
@@ -314,10 +297,7 @@ const CourseUpdate = ({ data }: { data: ICourse }) => {
               <FormItem>
                 <FormLabel>Trình độ</FormLabel>
                 <FormControl>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <SelectTrigger className='w-full'>
                       <SelectValue placeholder='Trình độ' />
                     </SelectTrigger>
