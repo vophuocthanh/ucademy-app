@@ -1,3 +1,4 @@
+import LessonSaveUrl from '@/app/(dashboard)/[course]/lesson/LessonSaveUrl';
 import PageNotFound from '@/app/not-found';
 import Heading from '@/components/common/Heading';
 import LessonContent from '@/components/lesson/LessonContent';
@@ -44,6 +45,7 @@ const page = async ({
   const completePercentage = ((histories?.length || 0) / (lessonList?.length || 1)) * 100;
   return (
     <div className='block xl:grid xl:grid-cols-[minmax(0,2fr),minmax(0,1fr)] gap-10 min-h-screen items-start'>
+      <LessonSaveUrl course={course} url={`/${course}/lesson?slug=${slug}`}></LessonSaveUrl>
       <div>
         <div className='relative mb-5 aspect-video'>
           <iframe
