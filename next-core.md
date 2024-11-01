@@ -34,6 +34,8 @@ ex: http://localhost:3000/hi/lesson?%C3%A1dasdsad=
 useRouter() => Client Component
 redirect() => Server Component
 
+use-client có thể wrap trong server component
+
 ### Notes
 
 - Có thể viết component trong folder app (route).
