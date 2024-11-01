@@ -69,3 +69,17 @@ export async function findAllLessons({
     console.log(error);
   }
 }
+
+export async function countLessonByCourseId({
+  courseId,
+}: {
+  courseId: string;
+}): Promise<number | undefined> {
+  try {
+    connectToDatabase();
+    const count = await Lesson.countDocuments({ course: courseId });
+    return count || 0;
+  } catch (error) {
+    console.log(error);
+  }
+}
