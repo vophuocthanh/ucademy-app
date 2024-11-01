@@ -33,6 +33,7 @@ import { Input } from '../ui/input';
 
 const CourseManage = ({ courses }: { courses: ICourse[] }) => {
   const [page, setPage] = useState(1);
+
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -76,24 +77,26 @@ const CourseManage = ({ courses }: { courses: ICourse[] }) => {
   const handleChangeStatus = async (slug: string, status: ECourseStatus) => {
     try {
       Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
+        title: 'Bạn có chắc muốn đổi trạng thái không?',
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, update it!',
+        confirmButtonText: 'Cập nhật',
+        cancelButtonText: 'Hủy',
       }).then(async (result) => {
         if (result.isConfirmed) {
           await updateCourse({
             slug,
             updateData: {
-              status: ECourseStatus.PENDING ? ECourseStatus.APPROVED : ECourseStatus.PENDING,
+              status:
+                status === ECourseStatus.PENDING ? ECourseStatus.APPROVED : ECourseStatus.PENDING,
               _destroy: false,
             },
             path: '/manage/course',
           });
           toast.success('Cập nhật trạng thái thành công!');
+          router.push(
+            `${pathname}?${createQueryString('status', '')}&${createQueryString('search', '')}`
+          );
         }
       });
     } catch (error) {
@@ -119,7 +122,6 @@ const CourseManage = ({ courses }: { courses: ICourse[] }) => {
     router.push(`${pathname}?${createQueryString('page', page.toString())}`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
-
   return (
     <>
       <Link
