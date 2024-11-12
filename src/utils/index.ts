@@ -1,9 +1,5 @@
-import { Manrope, Roboto } from 'next/font/google';
-const manrope = Manrope({ subsets: ['latin'], variable: '--font-manrope' });
-const roboto = Roboto({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  variable: '--font-roboto',
-});
+import { Manrope } from 'next/font/google';
 
-export { manrope, roboto };
+const manrope = Manrope({ subsets: ['latin'], variable: '--font-manrope' });
+export const createOrderCode = () => `DH-${new Date().getTime().toString().slice(-6)}`;
+export { manrope };
